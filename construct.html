@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Rozeboom & Company - Construction</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" 
+      type="image/png" 
+      href="RClogo.png">
+
+<style>
+::selection, :focus {
+  outline:none;
+}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+  }
+  body {
+    width: 100vw;
+    height: 100vh;
+  }
+
+.navbar {
+  background: #999;
+  width:100%;
+  height:32px;
+  position:absolute;
+  top:10px;
+}
+
+button {
+  border:none;
+  padding: 5px 10px;
+  font-family: Times New Roman;
+  font-size: 17px;
+  background: #999;
+  margin-right: 5px;
+  cursor:pointer;
+  transition: 0.3s all ease;
+}button:hover {
+  border: 1px solid rgba(0,0,0,0.6);
+  background: #b8b8b8;
+  transform: scale(1.05)
+}button:active {
+  transform: scale(1.01);
+}button:nth-child(odd) {
+  float: right;
+}button:nth-child(even) {
+  float: left;
+}
+
+.admin {
+  position:relative;
+  left:calc(-50% + 230px);
+}
+
+@media only screen and (max-width: 574px) {
+::-webkit-scrollbar {
+  display:none;
+}
+button {
+    position:relative;
+    width:100%;
+    left:0px;
+  }button:hover{
+    margin-bottom:1px;
+    margin-top:1px; 
+  }
+  .navbar{
+    position:relative;
+    top:0;
+    height:153px;
+    width:100%;
+  }
+
+}
+
+@media only screen and (min-width: 574px) {
+  .navbar {
+    position:relative;
+    top:0px;
+  }
+}
+.login {
+  width: 300px;
+  height:200px;
+  border-radius:15px;
+  background:grey;
+  position:absolute;
+  top:calc(50% - 100px);
+  left:calc(50% - 150px);
+}
+.close {
+  color:red;
+  font-family:arial black;
+  position:relative;
+  left:280px;
+  cursor:pointer;
+}
+input {
+  width:250px;
+  height:30px;
+  text-align:center;
+  line-height:30px;
+  margin-bottom:6px;
+  position:relative;
+  top:45px;
+  left:calc(50% - 125px);
+}input:nth-child(even){
+  position:relative;
+  left:9px;
+}
+
+.submit {
+  width:150px;
+  height:40px;
+  background:green;
+  border-radius:15pc;
+  text-align:center;
+  line-height:40px;
+  cursor:pointer;
+  color:white;
+  position:absolute;
+  bottom:10px;
+  left:calc(50% - 75px);
+}.submit:hover{
+  background: #009100;
+}
+
+.a {
+  position:absolute;
+  left:calc(50% - 70px);
+  top:118px;
+  color:#0000bb;
+  text-decoration:underline;
+  cursor:pointer;
+}.a:hover{
+  color:#0000ff;
+}
+
+</style>
+</head>
+<body>
+
+<div class="navbar">
+<button class="garden">Gardening</button>
+<button class="home">Home</button>
+<button class="contact">Contact</button>
+<button class="about">About Us</button>
+<button class="admin">Staff Site</button>
+</div>
+
+<div class="login" hidden>
+<label class="close">X</label>
+<input placeholder="Username" class="user">
+<input placeholder="Password" type="password" class="pass">
+<span class="a">Not on staff? Sign up!</span>
+<div class="submit">Login</div>
+</div>
+
+</body>
+<script>
+
+var users = ["jjmcg04","ddro05","jmro05"];
+var pass = ["McG57184"];
+
+var isStaff = localStorage.getItem("staff");
+
+window.addEventListener("click", function(e){
+  if(e.target.className == "garden"){
+    open("gardening.html","_self");
+  }else
+if(e.target.className == "home"){
+    open("home.html","_self");
+  }else
+if(e.target.className == "about"){
+    open("about-us.html","_self");
+  }else
+if(e.target.className == "contact"){
+    open("contact.html","_self");
+  }else
+if(e.target.className == "admin"){
+if(isStaff == "true"){
+    open("staff.html","_self");
+  }else{
+    document.querySelector(".login").style.display = "block";
+}
+  }else
+if(e.target.className == "close"){
+    document.querySelector(".login").style.display = "none";
+}else
+if(e.target.className == "submit"){
+    var u = document.querySelector(".user").value;
+    var p = document.querySelector(".pass").value;
+    checkStaff(u,p);
+}else
+if(e.target.className == "a"){
+  open("sign-up-for-staff.html","_self");
+}
+});
+
+function checkStaff(u,p){
+var staff = false;
+  for(var i=0;i<users.length;i++){
+    if(u == users[i] && p == pass[i]){
+      localStorage.setItem("staff",true);
+      staff = true;
+    }
+  }
+  if(i >= users.length && staff == false){
+  alert("username or password is incorrect!");
+  }else
+  if(staff == true){
+  open("staff.html","_self");
+  }
+}
+</script>
+</html>
