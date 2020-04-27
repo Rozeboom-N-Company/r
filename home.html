@@ -219,7 +219,16 @@ var pass = ["McG57184"];
 var minwidth = 534;
 var isStaff = localStorage.getItem("staff");
 
-if(isStaff == "true"){
+var href = location.href;
+var hrefTag = href.substring(href.length-4,href.length);
+
+if(hrefTag == "staff"){
+var fromStaff = true;
+}else{
+var fromStaff = false;
+}
+
+if(isStaff == "true" && fromStaff == false){
   var e = confirm("Welcome back staff member! We are redirecting you to the staff page!");
   if(e == true){
     open("staff.html","_self");
