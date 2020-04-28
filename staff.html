@@ -180,7 +180,7 @@ alert(auth);
 if(auth == "jjmcg04"|| auth == "ddro05"|| auth == "jmro05"){
   alert("Welcome back "+auth+"!");
 }else{
-  open("home.html?auth=false","_self");
+  //open("home.html?auth=false","_self");
 }
 
 
@@ -212,17 +212,5 @@ if(e.target.className == "a"){
   open("sign-up-for-staff.html","_self");
 }
 });
-
-function checkStaff(u,p){
-  for(var i=0;i<users.length;i++){
-    if(u == users[i] && p == pass[i]){
-      localStorage.setItem("staff",true);
-      open("staff.html","_self");
-    }
-  }
-  if(i >= users.length){
-  alert("username or password is incorrect!");
-  }
-}
 </script>
 </html>
