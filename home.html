@@ -214,10 +214,21 @@ input {
 
 <script>
 var users = ["jjmcg04","ddro05","jmro05"];
-var pass = ["McG57184"];
+var pass = "RozeboomNCompanyStaff";
+
+var href = location.href;
+var auth = href.split("https://rozeboom-n-company.github.io/r/home.html?auth=").join("");
+
+if(auth == "false"){
+  alert("You were found on our staff site without an auth code!");
+}
 
 var minwidth = 534;
 var isStaff = localStorage.getItem("staff");
+var name = localStorage.getItem("name");
+if(name == null || name == undefined || name == "" || name == "undefined" || name == "null" || name == "NaN" || name == NaN){
+  isStaff = false;
+}
 
 var href = location.href;
 var hrefTag = href.substring(href.length-4,href.length);
@@ -238,7 +249,7 @@ if(e.target.className == "contact"){
   }else
 if(e.target.className == "admin"){
 if(isStaff == "true"){
-  open("staff.html","_self");
+  open("staff.html?auth="+name,"_self");
 }else{
     document.querySelector(".login").style.display = "block";
 }
@@ -259,8 +270,10 @@ if(e.target.className == "a"){
 function checkStaff(u,p){
 var staff = false;
   for(var i=0;i<users.length;i++){
-    if(u == users[i] && p == pass[i]){
+    if(u == users[i] && p == pass){
       localStorage.setItem("staff",true);
+      localStorage.setItem("name",u);
+      name = u;
       staff = true;
     }
   }
@@ -268,7 +281,7 @@ var staff = false;
   alert("username or password is incorrect!");
   }else
   if(staff == true){
-  open("staff.html","_self");
+  open("staff.html?auth"+name,"_self");
   }
 }
 

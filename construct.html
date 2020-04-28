@@ -165,9 +165,13 @@ input {
 <script>
 
 var users = ["jjmcg04","ddro05","jmro05"];
-var pass = ["McG57184"];
+var pass = "RozeboomNCompanyStaff";
 
 var isStaff = localStorage.getItem("staff");
+var name = localStorage.getItem("name");
+if(name == (null|"null"|undefined|"undefined"|""|NaN|"NaN")){
+  isStaff = false;
+}
 
 window.addEventListener("click", function(e){
   if(e.target.className == "garden"){
@@ -205,8 +209,10 @@ if(e.target.className == "a"){
 function checkStaff(u,p){
 var staff = false;
   for(var i=0;i<users.length;i++){
-    if(u == users[i] && p == pass[i]){
+    if(u == users[i] && p == pass){
       localStorage.setItem("staff",true);
+      localStorage.setItem("name",u);
+      name = u;
       staff = true;
     }
   }
@@ -214,7 +220,7 @@ var staff = false;
   alert("username or password is incorrect!");
   }else
   if(staff == true){
-  open("staff.html","_self");
+  open("staff.html?auth="+name,"_self");
   }
 }
 </script>

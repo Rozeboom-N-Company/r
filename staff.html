@@ -172,6 +172,16 @@ input {
 </body>
 <script>
 
+var href = location.href;
+var auth = href.split("https://rozeboom-n-company.github.io/r/staff.html?auth=").join("");
+
+if(auth == ("jjmcg04"|"ddro05"|"jmro05")){
+  alert("Welcome back "+auth+"!");
+}else{
+  open("home.html?auth=false","_self");
+}
+
+
 window.addEventListener("click", function(e){
   if(e.target.className == "garden"){
     open("gardening.html","_self");
