@@ -188,7 +188,7 @@ if(e.target.className == "contact"){
   }else
 if(e.target.className == "admin"){
 if(isStaff == "true"){
-    open("staff.html","_self");
+    open("staff.html?auth="+name,"_self");
   }else{
     document.querySelector(".login").style.display = "block";
 }
