@@ -10,7 +10,7 @@
       href="RClogo.png">
 
 <style>
-::selection, :focus {
+:focus {
   outline:none;
 }
   * {
@@ -29,9 +29,12 @@
   background-size:100% 100%;
   background-position: 0px -80px
   background-repeat:none;
+}.header ::selection{
+  outline:none;
 }
 
 .header h1 {
+  cursor:default;
   position:relative;
   text-align:center;
   font-size:40px;
@@ -182,6 +185,11 @@ input {
   }
 }
 
+.sticky {
+  position: fixed;
+  top:0;
+}
+
 </style>
 
 </head>
@@ -209,7 +217,6 @@ input {
 <div class="submit">Login</div>
 
 </div>
-
 </body>
 
 <script>
@@ -285,6 +292,21 @@ var staff = false;
   }else
   if(staff == true){
   open("staff.html?auth="+name,"_self");
+  }
+}
+
+var scrollLeft = (window.pageXOffset !== undefined) ? window.pageXOffset : (document.documentElement || document.body.parentNode || document.body).scrollLeft;
+var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+
+window.onscroll = function() {
+var navbar = document.querySelector(".navbar");
+  scrollLeft = (window.pageXOffset !== undefined) ? window.pageXOffset : (document.documentElement || document.body.parentNode || document.body).scrollLeft;
+  scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+
+  if(scrollTop >= 580){
+    navbar.classList.add("sticky");
+  }else{
+    navbar.classList.remove("sticky");
   }
 }
 
